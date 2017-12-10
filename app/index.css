@@ -40,6 +40,8 @@ input:focus {
   background-color: #fb6d4d;
   color: #fff;
   padding: 5px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .home-container {
