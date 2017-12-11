@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import api from '../utils/api';
 
 export default class CityInput extends React.Component {
   constructor(props) {
@@ -9,18 +10,23 @@ export default class CityInput extends React.Component {
       city: ''
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleChange(event) {
-    const value = event.target.value;
-    this.setState(function() {
-      return {
-        city: value
-      }
-    })
+  handleChange(e) {
+    const value = e.target.value;
+    this.setState({
+      city: value
+    });
+  }
+  handleSubmit(e) {
+    e.preventDefault();
+    api.fetchCurrentWeather(this.state.city);
   }
   render() {
     return (
-      <form style={{display: 'flex', flexDirection: this.props.flexDirection, alignItems: 'center'}}>
+      <form
+        style={{display: 'flex', flexDirection: this.props.flexDirection, alignItems: 'center'}}
+        onSubmit={this.handleSubmit}>
         <input
           id='city'
           placeholder='New York'
