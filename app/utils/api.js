@@ -14,5 +14,12 @@ module.exports = {
         console.log('Low ' + response.data.main.temp_min);
         console.log('High ' + response.data.main.temp_max);
       });
+  },
+  fetchForecast: function(city) {
+    const encodedURI = window.encodeURI(`http://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&units=imperial&type=accurate&APPID=${id}&cnt=5`)
+    return axios.get(encodedURI)
+      .then((response) => {
+        console.log(response);
+      })
   }
 }
