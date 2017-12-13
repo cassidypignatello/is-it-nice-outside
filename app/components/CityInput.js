@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import api from '../utils/api';
+import { Link } from 'react-router-dom';
 
 export default class CityInput extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ export default class CityInput extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
   handleChange(e) {
     const value = e.target.value;
@@ -21,6 +23,11 @@ export default class CityInput extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     api.fetchCurrentWeather(this.state.city);
+  }
+  handleClick(e) {
+    if (this.state.city === '') {
+      e.preventDefault();
+    }
   }
   render() {
     return (
@@ -35,12 +42,12 @@ export default class CityInput extends React.Component {
           value={this.state.city}
           onChange={this.handleChange}
         />
-        <button
-          type='submit'
+        <Link
+          to='/forecast'
           className='weather-btn'
-          disabled={!this.state.city}>
+          onClick={this.handleClick}>
           Get Weather
-        </button>
+        </Link>
       </form>
     );
   }
