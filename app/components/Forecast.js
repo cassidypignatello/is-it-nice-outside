@@ -8,22 +8,18 @@ export default class Forecast extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true
+      loading: true,
+      data: null
     };
   }
   componentDidMount() {
     const query = queryString.parse(this.props.location.search);
     api.fetchCurrentWeather(query.city)
-      .then((response) => {
-        console.log(response.data.name);
-        console.log(response.data.weather[0].description);
-        console.log('The temperature is currently ' + response.data.main.temp);
-        console.log('Humidity: ' + response.data.main.humidity);
-        console.log('Low ' + response.data.main.temp_min);
-        console.log('High ' + response.data.main.temp_max);
+      .then((data) => {
         this.setState({
-          loading: false
-        })
+          loading: false,
+          data: data
+        });
       });
   }
   render() {
@@ -34,7 +30,15 @@ export default class Forecast extends React.Component {
     }
 
     return (
-      <p>Forecast!</p>
+      <div className='container'>
+        <div className='current-conditions'>
+          <h1>The current weather for {this.state.data.name} is {this.state.data.weather[0].description}.</h1>
+          <p>Current Temperature: {Math.round(this.state.data.main.temp)}&deg;</p>
+          <p>Humidity: {this.state.data.main.humidity}%</p>
+          <p>Today's Low: {Math.round(this.state.data.main.temp_min)}&deg;</p>
+          <p>Today's High: {Math.round(this.state.data.main.temp_max)}&deg;</p>
+        </div>
+      </div>
     );
   }
 }
