@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import api from '../utils/api';
 import { Link } from 'react-router-dom';
 
 export default class CityInput extends React.Component {
@@ -22,7 +21,6 @@ export default class CityInput extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    api.fetchCurrentWeather(this.state.city);
   }
   handleClick(e) {
     if (this.state.city === '') {
