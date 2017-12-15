@@ -31,6 +31,10 @@ a:visited {
   color: #fff;
 }
 
+li {
+  list-style-type: none;
+}
+
 .container, #app {
   width: 100%;
   height: 100%;
@@ -83,7 +87,7 @@ a:visited {
   align-items: center;
 }
 
-.current-conditions h1 {
+.current-conditions h1, .forecast-container h1 {
   font-weight: 200;
   font-size: 38px;
   text-align: center;
@@ -92,4 +96,28 @@ a:visited {
 .weather-icon {
   width: 125px;
   height: auto;
+}
+
+.forecast-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.forecast-item {
+  margin: 20px;
+  text-align: center;
+}
+
+.space-list-items {
+  padding: 0;
+}
+
+.space-list-items li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
 }
