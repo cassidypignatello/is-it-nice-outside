@@ -86,4 +86,10 @@ a:visited {
 .current-conditions h1 {
   font-weight: 200;
   font-size: 38px;
+  text-align: center;
+}
+
+.weather-icon {
+  width: 125px;
+  height: auto;
 }

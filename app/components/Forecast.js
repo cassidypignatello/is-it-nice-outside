@@ -49,6 +49,7 @@ export default class Forecast extends React.Component {
       <div className='container'>
         <div className='current-conditions'>
           <h1>The current weather for {this.state.data.currentConditions.name} is {this.state.data.currentConditions.weather[0].description}.</h1>
+          <img className='weather-icon' src={`/app/images/weather-icons/${this.state.data.currentConditions.weather[0].icon}.svg`}></img>
           <p>Current Temperature: {Math.round(this.state.data.currentConditions.main.temp)}&deg;</p>
           <p>Humidity: {this.state.data.currentConditions.main.humidity}%</p>
           <p>Today's Low: {Math.round(this.state.data.currentConditions.main.temp_min)}&deg;</p>
