@@ -6,26 +6,20 @@ import helpers from '../utils/helpers';
 import queryString from 'query-string';
 import Loading from './Loading';
 
-const ForecastGrid = (props) => (
-  <div className='forecast-container'>
-    <h1>5-Day Forecast</h1>
-    <ul className='forecast-list'>
-      {props.forecast.list.map((day) => {
-        const date = helpers.getDate(day.dt);
-        return (
-          <li key={day.dt} className='forecast-item'>
-            <ul className='space-list-items'>
-              <li>
-                <img className='weather-icon' src={`/app/images/weather-icons/${day.weather[0].icon}.svg`}/>
-              </li>
-              <li className='forecast-date'>{date}</li>
-            </ul>
-          </li>
-        );
-      })}
-    </ul>
-  </div>
-);
+const ForecastItem = (props) => {
+  const date = helpers.getDate(props.day.dt);
+  const icon = props.day.weather[0].icon;
+  return (
+    <li onClick={props.onClick} className='forecast-item'>
+      <ul className='space-list-items'>
+        <li>
+          <img className='weather-icon' src={`/app/images/weather-icons/${icon}.svg`}/>
+        </li>
+        <li className='forecast-date'>{date}</li>
+      </ul>
+    </li>
+  );
+}
 
 export default class Forecast extends React.Component {
   constructor(props) {
@@ -35,10 +29,23 @@ export default class Forecast extends React.Component {
       data: null,
       error: null
     };
+    this.handleClick = this.handleClick.bind(this);
+    this.makeRequest = this.makeRequest.bind(this);
   }
   componentDidMount() {
-    const query = queryString.parse(this.props.location.search);
-    api.getWeatherData(query.city)
+    this.city = queryString.parse(this.props.location.search).city;
+    this.makeRequest(this.city);
+  }
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
+    this.city = queryString.parse(nextProps.location.search).city;
+    this.makeRequest(this.city);
+  }
+  makeRequest(city) {
+    this.setState({
+      loading: true
+    });
+    api.getWeatherData(city)
       .then((data) => {
         console.log(data);
         if (data === null) {
@@ -53,6 +60,12 @@ export default class Forecast extends React.Component {
           error: null
         });
       });
+  }
+  handleClick(day) {
+    this.props.history.push({
+      pathname: '/details/' + this.city,
+      state: day
+    })
   }
   render() {
     if (this.state.loading) {
@@ -79,7 +92,14 @@ export default class Forecast extends React.Component {
           <p>Today's High: {Math.round(this.state.data.currentConditions.main.temp_max)}&deg;</p>
         </div>
         <hr />
-        <ForecastGrid forecast={this.state.data.forecast} />
+        <div className='forecast-container'>
+          <h1>5-Day Forecast</h1>
+          <ul className='forecast-list'>
+            {this.state.data.forecast.list.map((day) => {
+              return <ForecastItem onClick={this.handleClick.bind(this, day)} key={day.dt} day={day} />
+            }, this)}
+          </ul>
+        </div>
       </div>
     );
   }

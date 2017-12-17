@@ -4,6 +4,7 @@ import { BrowserRouter as Router, ReactRouter, Route, Switch } from 'react-route
 import Home from '../components/Home';
 import Header from '../components/Header';
 import Forecast from '../components/Forecast';
+import Details from '../components/Details';
 
 export default class App extends React.Component {
   render() {
@@ -14,6 +15,7 @@ export default class App extends React.Component {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/forecast' component={Forecast} />
+            <Route path='/details/:city' component={Details} />
             <Route render={() => <p>Not found!</p>} />
           </Switch>
         </div>
