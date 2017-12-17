@@ -2,24 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import api from '../utils/api';
-import helpers from '../utils/helpers';
 import queryString from 'query-string';
 import Loading from './Loading';
-
-const ForecastItem = (props) => {
-  const date = helpers.getDate(props.day.dt);
-  const icon = props.day.weather[0].icon;
-  return (
-    <li onClick={props.onClick} className='forecast-item'>
-      <ul className='space-list-items'>
-        <li>
-          <img className='weather-icon' src={`/app/images/weather-icons/${icon}.svg`}/>
-        </li>
-        <li className='forecast-date'>{date}</li>
-      </ul>
-    </li>
-  );
-}
+import ForecastItem from './ForecastItem';
 
 export default class Forecast extends React.Component {
   constructor(props) {
@@ -62,6 +47,7 @@ export default class Forecast extends React.Component {
       });
   }
   handleClick(day) {
+    day.city = this.city;
     this.props.history.push({
       pathname: '/details/' + this.city,
       state: day
@@ -88,8 +74,8 @@ export default class Forecast extends React.Component {
           <img className='weather-icon' src={`/app/images/weather-icons/${this.state.data.currentConditions.weather[0].icon}.svg`}/>
           <p>Current Temperature: {Math.round(this.state.data.currentConditions.main.temp)}&deg;</p>
           <p>Humidity: {this.state.data.currentConditions.main.humidity}%</p>
-          <p>Today's Low: {Math.round(this.state.data.currentConditions.main.temp_min)}&deg;</p>
-          <p>Today's High: {Math.round(this.state.data.currentConditions.main.temp_max)}&deg;</p>
+          <p>Today's Low Temperature: {Math.round(this.state.data.currentConditions.main.temp_min)}&deg;</p>
+          <p>Today's High Temperature: {Math.round(this.state.data.currentConditions.main.temp_max)}&deg;</p>
         </div>
         <hr />
         <div className='forecast-container'>
