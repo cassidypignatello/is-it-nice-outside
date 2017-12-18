@@ -22,12 +22,11 @@ const monthMap = {
   10: 'November',
   11: 'December'
 }
-module.exports = {
-  getDate: function(timestamp) {
-    const date = new Date(timestamp * 1000);
-    const day = dayMap[date.getDay()];
-    const month = `${monthMap[date.getMonth()]} ${date.getDate()}`;
-    const fullDate = `${day}, ${month}`;
-    return fullDate;
-  }
+
+export function getDate(timestamp) {
+  const date = new Date(timestamp * 1000);
+  const day = dayMap[date.getDay()];
+  const month = `${monthMap[date.getMonth()]} ${date.getDate()}`;
+  const fullDate = `${day}, ${month}`;
+  return fullDate;
 }

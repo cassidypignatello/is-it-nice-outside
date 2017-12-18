@@ -1,9 +1,9 @@
 import React from 'react';
-import helpers from '../utils/helpers';
+import { getDate } from '../utils/helpers';
 import WeatherIcon from './WeatherIcon';
 
 const ForecastItem = (props) => {
-  const date = helpers.getDate(props.day.dt);
+  const date = getDate(props.day.dt);
   const icon = props.day.weather[0].icon;
   return (
     <li onClick={props.onClick} className='forecast-item'>
