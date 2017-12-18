@@ -4,30 +4,29 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 export default class CityInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      city: ''
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+  state = {
+    city: ''
+  };
+  static defaultProps = {
+    flexDirection: 'column'
   }
-  handleChange(e) {
+  static propTypes = {
+    flexDirection: PropTypes.string.isRequired
+  }
+  handleChange = (e) => {
     const value = e.target.value;
     this.setState({
       city: value
     });
   }
-  handleSubmit(e) {
-    e.preventDefault();
-  }
-  handleClick(e) {
+  handleSubmit = (e) => e.preventDefault();
+  handleClick = (e) => {
     if (this.state.city === '') {
       e.preventDefault();
     }
   }
   render() {
+    const { city } = this.state;
     return (
       <form
         style={{display: 'flex', flexDirection: this.props.flexDirection, alignItems: 'center'}}
@@ -37,13 +36,13 @@ export default class CityInput extends React.Component {
           placeholder='New York'
           type='text'
           autoComplete='off'
-          value={this.state.city}
+          value={city}
           onChange={this.handleChange}
         />
         <Link
           to={{
             pathname: '/forecast',
-            search: `?city=${this.state.city}`
+            search: `?city=${city}`
           }}
           className='weather-btn'
           onClick={this.handleClick}>
@@ -52,12 +51,4 @@ export default class CityInput extends React.Component {
       </form>
     );
   }
-}
-
-CityInput.defaultProps = {
-  flexDirection: 'column'
-}
-
-CityInput.propTypes = {
-  flexDirection: PropTypes.string.isRequired
 }

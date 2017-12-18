@@ -68,7 +68,7 @@ export default class Forecast extends React.Component {
         </div>
       );
     }
-    
+
     return (
       <div className='container'>
         <div className='current-conditions'>

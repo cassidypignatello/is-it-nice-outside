@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, ReactRouter, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  ReactRouter,
+  Route,
+  Switch } from 'react-router-dom';
 import Home from './Home';
 import Header from './Header';
 import Forecast from './Forecast';
