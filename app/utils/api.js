@@ -1,6 +1,6 @@
 import axios from 'axios';
 const id = 'fdeb56ea588891439fd8f658fe75e6a7';
-const baseURL = 'http://api.openweathermap.org/data/2.5/';
+const baseURL = 'https://api.openweathermap.org/data/2.5/';
 
 function handleError(error) {
   console.warn(error);

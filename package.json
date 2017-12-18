@@ -4,7 +4,11 @@
   "description": "A React weather app that uses the Open Weather API to show the forecast in any city.",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open",
+    "build": "NODE_ENV='production' webpack -p",
+    "deploy": "npm run build && firebase deploy",
+    "firebase-init": "firebase login && firebase init",
+    "firebase-add": "firebase use --add"
   },
   "babel": {
     "presets": [
