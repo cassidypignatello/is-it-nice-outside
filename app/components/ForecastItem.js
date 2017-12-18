@@ -2,11 +2,11 @@ import React from 'react';
 import { getDate } from '../utils/helpers';
 import WeatherIcon from './WeatherIcon';
 
-const ForecastItem = (props) => {
-  const date = getDate(props.day.dt);
-  const icon = props.day.weather[0].icon;
+const ForecastItem = ({ day, onClick }) => {
+  const date = getDate(day.dt);
+  const icon = day.weather[0].icon;
   return (
-    <li onClick={props.onClick} className='forecast-item'>
+    <li onClick={onClick} className='forecast-item'>
       <ul className='space-list-items'>
         <li>
           <WeatherIcon iconId={icon} />
