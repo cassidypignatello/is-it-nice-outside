@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, ReactRouter, Route, Switch } from 'react-router-dom';
-import Home from '../components/Home';
-import Header from '../components/Header';
-import Forecast from '../components/Forecast';
-import Details from '../components/Details';
+import Home from './Home';
+import Header from './Header';
+import Forecast from './Forecast';
+import Details from './Details';
 
 export default class App extends React.Component {
   render() {

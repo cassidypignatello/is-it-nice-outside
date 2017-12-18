@@ -119,6 +119,11 @@ li {
   padding: 0;
 }
 
+.space-list-items:hover {
+  padding: 0;
+  cursor: pointer;
+}
+
 .space-list-items li {
   display: flex;
   flex-direction: column;

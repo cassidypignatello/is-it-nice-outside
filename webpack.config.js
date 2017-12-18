@@ -9,6 +9,9 @@ var config = {
     filename: 'index_bundle.js',
     publicPath: '/'
   },
+  resolve: {
+    modules: [path.resolve(__dirname, 'app'), "node_modules"]
+  },
   module: {
     rules: [
       { test: /\.(js)$/, use: 'babel-loader' },

@@ -5,6 +5,7 @@ import api from '../utils/api';
 import queryString from 'query-string';
 import Loading from './Loading';
 import ForecastItem from './ForecastItem';
+import WeatherIcon from './WeatherIcon';
 
 export default class Forecast extends React.Component {
   constructor(props) {
@@ -67,11 +68,12 @@ export default class Forecast extends React.Component {
         </div>
       );
     }
+    
     return (
       <div className='container'>
         <div className='current-conditions'>
           <h1>The current weather for {this.state.data.currentConditions.name} is {this.state.data.currentConditions.weather[0].description}.</h1>
-          <img className='weather-icon' src={`/app/images/weather-icons/${this.state.data.currentConditions.weather[0].icon}.svg`}/>
+          <WeatherIcon iconId={this.state.data.currentConditions.weather[0].icon} />
           <p>Current Temperature: {Math.round(this.state.data.currentConditions.main.temp)}&deg;</p>
           <p>Humidity: {this.state.data.currentConditions.main.humidity}%</p>
           <p>Today's Low Temperature: {Math.round(this.state.data.currentConditions.main.temp_min)}&deg;</p>
