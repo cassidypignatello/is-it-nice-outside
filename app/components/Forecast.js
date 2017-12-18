@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
-import api from '../utils/api';
+import { getWeatherData } from '../utils/api';
 import queryString from 'query-string';
 import Loading from './Loading';
 import ForecastItem from './ForecastItem';
@@ -31,7 +31,7 @@ export default class Forecast extends React.Component {
     this.setState({
       loading: true
     });
-    api.getWeatherData(city)
+    getWeatherData(city)
       .then((data) => {
         console.log(data);
         if (data === null) {
