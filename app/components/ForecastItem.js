@@ -9,7 +9,6 @@ const ForecastItem = (props) => {
     <li onClick={props.onClick} className='forecast-item'>
       <ul className='space-list-items'>
         <li>
-          {/*<img className='weather-icon' src={`/app/images/weather-icons/${icon}.svg`}/>*/}
           <WeatherIcon iconId={icon} />
         </li>
         <li className='forecast-date'>{date}</li>

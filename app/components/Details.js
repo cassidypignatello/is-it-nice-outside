@@ -7,7 +7,7 @@ export default class Details extends React.Component {
     console.log(props);
     return (
       <div>
-        <ForecastItem day={props} pathSuffix='../' />
+        <ForecastItem day={props} />
         <div className='details-container'>
           <p>{props.city}</p>
           <p>{props.weather[0].description}</p>
