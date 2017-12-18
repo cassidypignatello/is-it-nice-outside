@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import { getWeatherData } from '../utils/api';
 import queryString from 'query-string';
